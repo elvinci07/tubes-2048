@@ -150,4 +150,49 @@ public class GameBoard {
         }
         if (moved) spawnTile();
     }
+    
+    
+    // STATUS PERMAINAN (MENANG / KALAH)
+    public boolean isWin() {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (board[i][j].getValue() == 2048) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean isGameOver() {
+        // 1. Cek apakah ada kotak kosong
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (board[i][j].getValue() == 0) return false;
+            }
+        }
+
+        // 2. Cek apakah ada angka bersebelahan (kiri-kanan / atas-bawah) yang sama
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                int current = board[i][j].getValue();
+                // Cek kanan
+                if (j < 3 && current == board[i][j + 1].getValue()) return false;
+                // Cek bawah
+                if (i < 3 && current == board[i + 1][j].getValue()) return false;
+            }
+        }
+
+        // Jika Penuh dan tidak ada yang bisa digabung maka Game Over
+        return true; 
+    }
+
+    // Getter untuk dipanggil oleh GUI
+    public Tile[][] getBoard() {
+        return board;
+    }
+
+    public int getScore() {
+        return score;
+    }
 }
