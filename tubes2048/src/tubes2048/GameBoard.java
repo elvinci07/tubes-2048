@@ -92,4 +92,62 @@ public class GameBoard {
 
         return changed;
     }
+    
+    
+    // Trigger pergerakan dari Keyboard
+    public void moveLeft() {
+        boolean moved = false;
+        for (int i = 0; i < 4; i++) {
+            int[] line = new int[4];
+            for (int j = 0; j < 4; j++) line[j] = board[i][j].getValue();
+            
+            if (processLine(line)) {
+                moved = true;
+                for (int j = 0; j < 4; j++) board[i][j].setValue(line[j]);
+            }
+        }
+        if (moved) spawnTile();
+    }
+
+    public void moveRight() {
+        boolean moved = false;
+        for (int i = 0; i < 4; i++) {
+            int[] line = new int[4];
+            for (int j = 0; j < 4; j++) line[j] = board[i][3 - j].getValue(); // Ekstrak terbalik
+            
+            if (processLine(line)) {
+                moved = true;
+                for (int j = 0; j < 4; j++) board[i][3 - j].setValue(line[j]); // Masukkan terbalik
+            }
+        }
+        if (moved) spawnTile();
+    }
+
+    public void moveUp() {
+        boolean moved = false;
+        for (int j = 0; j < 4; j++) {
+            int[] line = new int[4];
+            for (int i = 0; i < 4; i++) line[i] = board[i][j].getValue(); // Ekstrak per kolom
+            
+            if (processLine(line)) {
+                moved = true;
+                for (int i = 0; i < 4; i++) board[i][j].setValue(line[i]);
+            }
+        }
+        if (moved) spawnTile();
+    }
+
+    public void moveDown() {
+        boolean moved = false;
+        for (int j = 0; j < 4; j++) {
+            int[] line = new int[4];
+            for (int i = 0; i < 4; i++) line[i] = board[3 - i][j].getValue(); // Ekstrak kolom terbalik
+            
+            if (processLine(line)) {
+                moved = true;
+                for (int i = 0; i < 4; i++) board[3 - i][j].setValue(line[i]);
+            }
+        }
+        if (moved) spawnTile();
+    }
 }
