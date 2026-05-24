@@ -47,4 +47,49 @@ public class GameBoard {
         int newNumber = (Math.random() < 0.9) ? 2 : 4;
         board[chosenCell[0]][chosenCell[1]].setValue(newNumber);
     }
+
+    
+    // LOGIKA PERGERAKAN (SLIDE & MERGE)
+    // Helper: Algoritma memproses 1 baris/kolom (Geser -> Gabung -> Geser)
+    private boolean processLine(int[] line) {
+        boolean changed = false;
+
+        // Langkah 1: Slide (Geser melewati nol)
+        int insertPos = 0;
+        for (int i = 0; i < 4; i++) {
+            if (line[i] != 0) {
+                if (i != insertPos) {
+                    line[insertPos] = line[i];
+                    line[i] = 0;
+                    changed = true;
+                }
+                insertPos++;
+            }
+        }
+
+        // Langkah 2: Merge (Gabungkan angka yang sama)
+        for (int i = 0; i < 3; i++) {
+            if (line[i] != 0 && line[i] == line[i + 1]) {
+                line[i] *= 2;         // Kalikan 2
+                score += line[i];     // Tambahkan ke skor
+                line[i + 1] = 0;      // Kosongkan kotak sebelahnya
+                changed = true;
+            }
+        }
+
+        // Langkah 3: Slide lagi (Tutup celah kosong akibat merge)
+        insertPos = 0;
+        for (int i = 0; i < 4; i++) {
+            if (line[i] != 0) {
+                if (i != insertPos) {
+                    line[insertPos] = line[i];
+                    line[i] = 0;
+                    changed = true;
+                }
+                insertPos++;
+            }
+        }
+
+        return changed;
+    }
 }
