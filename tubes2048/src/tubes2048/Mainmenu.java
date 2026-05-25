@@ -10,6 +10,8 @@ public class Mainmenu extends javax.swing.JFrame {
      */
     public Mainmenu() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
@@ -50,6 +52,7 @@ public class Mainmenu extends javax.swing.JFrame {
 
         btnPlay.setFont(new java.awt.Font("SimSun-ExtB", 1, 18)); // NOI18N
         btnPlay.setText("Play");
+        btnPlay.addActionListener(this::btnPlayActionPerformed);
         jPanel1.add(btnPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 110, 40));
 
         btnHistory.setFont(new java.awt.Font("SimSun-ExtB", 1, 18)); // NOI18N
@@ -58,6 +61,7 @@ public class Mainmenu extends javax.swing.JFrame {
 
         btnExit.setFont(new java.awt.Font("SimSun-ExtB", 1, 18)); // NOI18N
         btnExit.setText("Exit Game");
+        btnExit.addActionListener(this::btnExitActionPerformed);
         jPanel1.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, 170, 40));
 
         jLabel2.setFont(new java.awt.Font("SimSun-ExtB", 0, 12)); // NOI18N
@@ -72,6 +76,16 @@ public class Mainmenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayActionPerformed
+        inGame ingame = new inGame();
+        this.dispose();
+        ingame.show();
+    }//GEN-LAST:event_btnPlayActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnExitActionPerformed
 
     /**
      * @param args the command line arguments
