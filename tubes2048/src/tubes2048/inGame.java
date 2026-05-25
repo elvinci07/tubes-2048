@@ -33,6 +33,7 @@ public class inGame extends javax.swing.JFrame {
         
         updateGUI();
         
+        
     }
     
     private void updateGUI() {
@@ -62,7 +63,7 @@ public class inGame extends javax.swing.JFrame {
         }
 
         // Jangan lupa update label Score kalau kamu bikin label score di GUI Builder
-        // labelScore.setText("SCORE: " + gameBoard.getScore());
+        lblScore.setText(String.valueOf(gameBoard.getScore()));
     }
 
     // Method tambahan penentu warna
@@ -92,10 +93,10 @@ public class inGame extends javax.swing.JFrame {
         gameTitle = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        score = new javax.swing.JLabel();
+        lblScore = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        bestScore = new javax.swing.JLabel();
+        lblBestScore = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         kotak00 = new javax.swing.JLabel();
         kotak01 = new javax.swing.JLabel();
@@ -141,10 +142,10 @@ public class inGame extends javax.swing.JFrame {
         jLabel2.setText("SCORE");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        score.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        score.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        score.setText("0");
-        jPanel2.add(score, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 70, -1));
+        lblScore.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblScore.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblScore.setText("0");
+        jPanel2.add(lblScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 70, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 90, 70));
 
@@ -155,10 +156,10 @@ public class inGame extends javax.swing.JFrame {
         jLabel4.setText("BEST");
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 21));
 
-        bestScore.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        bestScore.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        bestScore.setText("0");
-        jPanel3.add(bestScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 70, -1));
+        lblBestScore.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblBestScore.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblBestScore.setText("0");
+        jPanel3.add(lblBestScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 70, -1));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 90, 70));
 
@@ -301,7 +302,6 @@ public class inGame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel bestScore;
     private javax.swing.JLabel gameTitle;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -325,6 +325,7 @@ public class inGame extends javax.swing.JFrame {
     private javax.swing.JLabel kotak31;
     private javax.swing.JLabel kotak32;
     private javax.swing.JLabel kotak33;
-    private javax.swing.JLabel score;
+    private javax.swing.JLabel lblBestScore;
+    private javax.swing.JLabel lblScore;
     // End of variables declaration//GEN-END:variables
 }
