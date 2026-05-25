@@ -12,11 +12,71 @@ public class inGame extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(inGame.class.getName());
 
+    private GameBoard gameBoard;
+    private javax.swing.JLabel[][] guiBoard;
     /**
      * Creates new form inGame
      */
     public inGame() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
+        
+        
+        gameBoard = new GameBoard();
+        guiBoard = new javax.swing.JLabel[][] {
+            {kotak00, kotak01, kotak02, kotak03},
+            {kotak10, kotak11, kotak12, kotak13},
+            {kotak20, kotak21, kotak22, kotak23},
+            {kotak30, kotak31, kotak32, kotak33}
+        };
+        
+        updateGUI();
+        
+    }
+    
+    private void updateGUI() {
+        Tile[][] backendBoard = gameBoard.getBoard(); // Ambil data dari logikamu
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                int nilai = backendBoard[i][j].getValue();
+
+                if (nilai == 0) {
+                    guiBoard[i][j].setText(""); // Kosongkan teks
+                    guiBoard[i][j].setBackground(new java.awt.Color(205, 193, 180)); // Warna kotak kosong
+                } else {
+                    guiBoard[i][j].setText(String.valueOf(nilai));
+
+                    // Ubah warna text (gelap untuk angka kecil, terang untuk angka besar)
+                    if (nilai <= 4) {
+                        guiBoard[i][j].setForeground(new java.awt.Color(119, 110, 101));
+                    } else {
+                        guiBoard[i][j].setForeground(new java.awt.Color(249, 246, 242));
+                    }
+
+                    // Set warna background berdasarkan angka
+                    guiBoard[i][j].setBackground(getWarnaKotak(nilai));
+                }
+            }
+        }
+
+        // Jangan lupa update label Score kalau kamu bikin label score di GUI Builder
+        // labelScore.setText("SCORE: " + gameBoard.getScore());
+    }
+
+    // Method tambahan penentu warna
+    private java.awt.Color getWarnaKotak(int value) {
+        return switch (value) {
+            case 2 -> new java.awt.Color(238, 228, 218);
+            case 4 -> new java.awt.Color(237, 224, 200);
+            case 8 -> new java.awt.Color(242, 177, 121);
+            case 16 -> new java.awt.Color(245, 149, 99);
+            case 32 -> new java.awt.Color(246, 124, 95);
+            case 64 -> new java.awt.Color(246, 94, 59);
+            case 128 -> new java.awt.Color(237, 207, 114);
+            default -> new java.awt.Color(237, 194, 46);
+        }; // Untuk 256 ke atas
     }
 
     /**
@@ -29,110 +89,191 @@ public class inGame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        gameTitle = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        score = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        bestScore = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        kotak00 = new javax.swing.JLabel();
+        kotak01 = new javax.swing.JLabel();
+        kotak02 = new javax.swing.JLabel();
+        kotak03 = new javax.swing.JLabel();
+        kotak10 = new javax.swing.JLabel();
+        kotak11 = new javax.swing.JLabel();
+        kotak12 = new javax.swing.JLabel();
+        kotak13 = new javax.swing.JLabel();
+        kotak20 = new javax.swing.JLabel();
+        kotak21 = new javax.swing.JLabel();
+        kotak22 = new javax.swing.JLabel();
+        kotak23 = new javax.swing.JLabel();
+        kotak30 = new javax.swing.JLabel();
+        kotak31 = new javax.swing.JLabel();
+        kotak32 = new javax.swing.JLabel();
+        kotak33 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 204, 204));
+        setPreferredSize(new java.awt.Dimension(787, 497));
+        setSize(new java.awt.Dimension(787, 497));
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(252, 250, 250));
+        jPanel1.setPreferredSize(new java.awt.Dimension(720, 50));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-        jLabel1.setText("2048");
+        gameTitle.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
+        gameTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        gameTitle.setText("2048");
+        jPanel1.add(gameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 120, 60));
 
         jPanel2.setBackground(new java.awt.Color(249, 233, 233));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Gloucester MT Extra Condensed", 0, 18)); // NOI18N
         jLabel2.setText("SCORE");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setText("0");
+        score.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        score.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        score.setText("0");
+        jPanel2.add(score, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 70, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
-                .addGap(28, 28, 28))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 90, 70));
 
         jPanel3.setBackground(new java.awt.Color(249, 233, 233));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Gloucester MT Extra Condensed", 0, 14)); // NOI18N
-        jLabel4.setText("BEST SCORE");
+        jLabel4.setFont(new java.awt.Font("Gloucester MT Extra Condensed", 0, 18)); // NOI18N
+        jLabel4.setText("BEST");
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 21));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel4)
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        bestScore.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        bestScore.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        bestScore.setText("0");
+        jPanel3.add(bestScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 70, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(551, Short.MAX_VALUE))
-        );
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 90, 70));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -5, 790, 110));
+
+        jPanel4.setLayout(new java.awt.GridLayout(4, 4, 1, 1));
+
+        kotak00.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kotak00.setText("0");
+        kotak00.setOpaque(true);
+        jPanel4.add(kotak00);
+
+        kotak01.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kotak01.setText("0");
+        kotak01.setOpaque(true);
+        jPanel4.add(kotak01);
+
+        kotak02.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kotak02.setText("0");
+        kotak02.setOpaque(true);
+        jPanel4.add(kotak02);
+
+        kotak03.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kotak03.setText("0");
+        kotak03.setOpaque(true);
+        jPanel4.add(kotak03);
+
+        kotak10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kotak10.setText("0");
+        kotak10.setOpaque(true);
+        jPanel4.add(kotak10);
+
+        kotak11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kotak11.setText("0");
+        kotak11.setOpaque(true);
+        jPanel4.add(kotak11);
+
+        kotak12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kotak12.setText("0");
+        kotak12.setOpaque(true);
+        jPanel4.add(kotak12);
+
+        kotak13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kotak13.setText("0");
+        kotak13.setOpaque(true);
+        jPanel4.add(kotak13);
+
+        kotak20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kotak20.setText("0");
+        kotak20.setOpaque(true);
+        jPanel4.add(kotak20);
+
+        kotak21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kotak21.setText("0");
+        kotak21.setOpaque(true);
+        jPanel4.add(kotak21);
+
+        kotak22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kotak22.setText("0");
+        kotak22.setOpaque(true);
+        jPanel4.add(kotak22);
+
+        kotak23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kotak23.setText("0");
+        kotak23.setOpaque(true);
+        jPanel4.add(kotak23);
+
+        kotak30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kotak30.setText("0");
+        kotak30.setOpaque(true);
+        jPanel4.add(kotak30);
+
+        kotak31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kotak31.setText("0");
+        kotak31.setOpaque(true);
+        jPanel4.add(kotak31);
+
+        kotak32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kotak32.setText("0");
+        kotak32.setOpaque(true);
+        jPanel4.add(kotak32);
+
+        kotak33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kotak33.setText("0");
+        kotak33.setOpaque(true);
+        jPanel4.add(kotak33);
+
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 420, 290));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here:                           
+        if (gameBoard.isGameOver()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Game Over! Skor: " + gameBoard.getScore());
+            return;
+        }
+
+        int key = evt.getKeyCode();
+        switch (key) {
+            case java.awt.event.KeyEvent.VK_UP -> gameBoard.moveUp();
+            case java.awt.event.KeyEvent.VK_DOWN -> gameBoard.moveDown();
+            case java.awt.event.KeyEvent.VK_LEFT -> gameBoard.moveLeft();
+            case java.awt.event.KeyEvent.VK_RIGHT -> gameBoard.moveRight();
+            default -> {
+            }
+        }
+
+        updateGUI(); // Panggil ini biar layarnya ke-update setiap kamu pencet arah
+
+        if (gameBoard.isWin()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "You Win!");
+        }
+    }//GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments
@@ -160,12 +301,30 @@ public class inGame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel bestScore;
+    private javax.swing.JLabel gameTitle;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel kotak00;
+    private javax.swing.JLabel kotak01;
+    private javax.swing.JLabel kotak02;
+    private javax.swing.JLabel kotak03;
+    private javax.swing.JLabel kotak10;
+    private javax.swing.JLabel kotak11;
+    private javax.swing.JLabel kotak12;
+    private javax.swing.JLabel kotak13;
+    private javax.swing.JLabel kotak20;
+    private javax.swing.JLabel kotak21;
+    private javax.swing.JLabel kotak22;
+    private javax.swing.JLabel kotak23;
+    private javax.swing.JLabel kotak30;
+    private javax.swing.JLabel kotak31;
+    private javax.swing.JLabel kotak32;
+    private javax.swing.JLabel kotak33;
+    private javax.swing.JLabel score;
     // End of variables declaration//GEN-END:variables
 }
