@@ -78,11 +78,16 @@ public class Mainmenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayActionPerformed
+        String usn = txtNama.getText();
         inGame ingame = new inGame();
         this.dispose();
         ingame.show();
     }//GEN-LAST:event_btnPlayActionPerformed
 
+    public String getName(String usn) {
+        return usn;
+    }
+    
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
