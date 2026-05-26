@@ -163,6 +163,17 @@ public class GameBoard {
         }
         return false;
     }
+    
+    public boolean isWinWin() {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (board[i][j].getValue() == 2048) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     public boolean isGameOver() {
         // 1. Cek apakah ada kotak kosong
