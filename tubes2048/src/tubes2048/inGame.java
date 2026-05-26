@@ -1,5 +1,7 @@
 package tubes2048;
 
+import javax.swing.JOptionPane;
+
 
 public class inGame extends javax.swing.JFrame {
     
@@ -7,6 +9,8 @@ public class inGame extends javax.swing.JFrame {
 
     private GameBoard gameBoard;
     private javax.swing.JLabel[][] guiBoard;
+    private String playerName = getName();
+
     /**
      * Creates new form inGame
      */
@@ -14,7 +18,6 @@ public class inGame extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        
         
         gameBoard = new GameBoard();
         guiBoard = new javax.swing.JLabel[][] {
@@ -25,8 +28,6 @@ public class inGame extends javax.swing.JFrame {
         };
         
         updateGUI();
-        
-        
     }
     
     private void updateGUI() {
@@ -84,13 +85,13 @@ public class inGame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        gameTitle = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         lblScore = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         lblBestScore = new javax.swing.JLabel();
+        gameTitle = new javax.swing.JLabel();
         gridContainer = new javax.swing.JPanel();
         kotak00 = new javax.swing.JLabel();
         kotak01 = new javax.swing.JLabel();
@@ -109,11 +110,14 @@ public class inGame extends javax.swing.JFrame {
         kotak32 = new javax.swing.JLabel();
         kotak33 = new javax.swing.JLabel();
         bgBoard = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
+        btnNewGame1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 204, 204));
         setMinimumSize(new java.awt.Dimension(1000, 800));
         setPreferredSize(new java.awt.Dimension(1000, 800));
+        setResizable(false);
         setSize(new java.awt.Dimension(1000, 800));
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -125,12 +129,6 @@ public class inGame extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(252, 250, 250));
         jPanel1.setPreferredSize(new java.awt.Dimension(720, 50));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        gameTitle.setFont(new java.awt.Font("Arial", 1, 72)); // NOI18N
-        gameTitle.setForeground(new java.awt.Color(61, 30, 0));
-        gameTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        gameTitle.setText("2048");
-        jPanel1.add(gameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 190, 60));
 
         jPanel2.setBackground(new java.awt.Color(249, 233, 233));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -159,6 +157,12 @@ public class inGame extends javax.swing.JFrame {
         jPanel3.add(lblBestScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 70, -1));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 90, 70));
+
+        gameTitle.setFont(new java.awt.Font("Arial", 1, 72)); // NOI18N
+        gameTitle.setForeground(new java.awt.Color(61, 30, 0));
+        gameTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        gameTitle.setText("2048");
+        jPanel1.add(gameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 640, 60));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 720, 130));
 
@@ -229,10 +233,34 @@ public class inGame extends javax.swing.JFrame {
         kotak33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gridContainer.add(kotak33);
 
-        getContentPane().add(gridContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 195, 430, 430));
+        getContentPane().add(gridContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 430, 430));
 
         bgBoard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tubes2048/resources/board.png"))); // NOI18N
-        getContentPane().add(bgBoard, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 460, 460));
+        getContentPane().add(bgBoard, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 450, 450));
+
+        btnBack.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnBack.setText("<html>Back</html>");
+        btnBack.setActionCommand("<html> New<br>\nGame</html>");
+        btnBack.setFocusable(false);
+        btnBack.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, 130));
+
+        btnNewGame1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnNewGame1.setText("<html>New<br>\nGame</html>");
+        btnNewGame1.setActionCommand("<html> New<br>\nGame</html>");
+        btnNewGame1.setFocusable(false);
+        btnNewGame1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnNewGame1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewGame1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnNewGame1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 20, -1, 130));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -258,18 +286,55 @@ public class inGame extends javax.swing.JFrame {
 
         if (gameBoard.isWin()) {
             javax.swing.JOptionPane.showMessageDialog(this, "You Win!");
+            gameTitle.setText("4096");
+        }
+        
+        if (gameBoard.isWinWin()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "You win again!");
+            gameTitle.setText("8192");
+        }
+        
+        if (gameBoard.isWinWin()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "At this rate just play alone bro");
+            gameTitle.setText("XÆA-12#!@$%^&*()_+{}|:<>?=-[]\\\\;',./0123456789");
         }
     }//GEN-LAST:event_formKeyPressed
+
+    private void btnNewGame1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewGame1ActionPerformed
+        int result = JOptionPane.showConfirmDialog(null, 
+            "Do you want to proceed? Your last score will be stored in History.", 
+            "Confirmation", 
+            JOptionPane.OK_CANCEL_OPTION);
+
+        if (result == JOptionPane.OK_OPTION) {
+            int lastScore = gameBoard.getScore();
+            String lastName = playerName;
+//            Mainmenu mainmenu = new Mainmenu();
+//            this.dispose();
+//            mainmenu.show();
+        this.requestFocusInWindow(); // Kembalikan fokus ke keyboard
+        }
+    }//GEN-LAST:event_btnNewGame1ActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        int result = JOptionPane.showConfirmDialog(null, 
+            "Do you want to proceed? Your last score will be stored in History.", 
+            "Confirmation", 
+            JOptionPane.OK_CANCEL_OPTION);
+
+        if (result == JOptionPane.OK_OPTION) {
+            int lastScore = gameBoard.getScore();
+            Mainmenu mainmenu = new Mainmenu();
+            this.dispose();
+            mainmenu.show();
+        this.requestFocusInWindow(); // Kembalikan fokus ke keyboard
+        }
+    }//GEN-LAST:event_btnBackActionPerformed
 
     
     
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -280,14 +345,13 @@ public class inGame extends javax.swing.JFrame {
         } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new inGame().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bgBoard;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnNewGame1;
     private javax.swing.JLabel gameTitle;
     private javax.swing.JPanel gridContainer;
     private javax.swing.JLabel jLabel2;
