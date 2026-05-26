@@ -79,6 +79,8 @@ public class Mainmenu extends javax.swing.JFrame {
 
     private void btnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayActionPerformed
         String usn = txtNama.getText();
+        
+        setName(usn);
         inGame ingame = new inGame();
         this.dispose();
         ingame.show();
