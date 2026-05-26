@@ -97,7 +97,7 @@ public class inGame extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         lblBestScore = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        gridContainer = new javax.swing.JPanel();
         kotak00 = new javax.swing.JLabel();
         kotak01 = new javax.swing.JLabel();
         kotak02 = new javax.swing.JLabel();
@@ -117,8 +117,9 @@ public class inGame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 204, 204));
-        setPreferredSize(new java.awt.Dimension(787, 497));
-        setSize(new java.awt.Dimension(787, 497));
+        setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        setSize(new java.awt.Dimension(800, 600));
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -133,7 +134,7 @@ public class inGame extends javax.swing.JFrame {
         gameTitle.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         gameTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gameTitle.setText("2048");
-        jPanel1.add(gameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 120, 60));
+        jPanel1.add(gameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 120, 60));
 
         jPanel2.setBackground(new java.awt.Color(249, 233, 233));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -147,7 +148,7 @@ public class inGame extends javax.swing.JFrame {
         lblScore.setText("0");
         jPanel2.add(lblScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 70, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 90, 70));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 90, 70));
 
         jPanel3.setBackground(new java.awt.Color(249, 233, 233));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -161,93 +162,109 @@ public class inGame extends javax.swing.JFrame {
         lblBestScore.setText("0");
         jPanel3.add(lblBestScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 70, -1));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 90, 70));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 90, 70));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -5, 790, 110));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -5, 800, 130));
 
-        jPanel4.setLayout(new java.awt.GridLayout(4, 4, 1, 1));
+        gridContainer.setLayout(new java.awt.GridLayout(4, 4, 1, 1));
 
+        kotak00.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         kotak00.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kotak00.setText("0");
         kotak00.setOpaque(true);
-        jPanel4.add(kotak00);
+        gridContainer.add(kotak00);
 
+        kotak01.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         kotak01.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kotak01.setText("0");
         kotak01.setOpaque(true);
-        jPanel4.add(kotak01);
+        gridContainer.add(kotak01);
 
+        kotak02.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         kotak02.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kotak02.setText("0");
         kotak02.setOpaque(true);
-        jPanel4.add(kotak02);
+        gridContainer.add(kotak02);
 
+        kotak03.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         kotak03.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kotak03.setText("0");
         kotak03.setOpaque(true);
-        jPanel4.add(kotak03);
+        gridContainer.add(kotak03);
 
+        kotak10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         kotak10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kotak10.setText("0");
         kotak10.setOpaque(true);
-        jPanel4.add(kotak10);
+        gridContainer.add(kotak10);
 
+        kotak11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         kotak11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kotak11.setText("0");
         kotak11.setOpaque(true);
-        jPanel4.add(kotak11);
+        gridContainer.add(kotak11);
 
+        kotak12.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         kotak12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kotak12.setText("0");
         kotak12.setOpaque(true);
-        jPanel4.add(kotak12);
+        gridContainer.add(kotak12);
 
+        kotak13.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         kotak13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kotak13.setText("0");
         kotak13.setOpaque(true);
-        jPanel4.add(kotak13);
+        gridContainer.add(kotak13);
 
+        kotak20.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         kotak20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kotak20.setText("0");
         kotak20.setOpaque(true);
-        jPanel4.add(kotak20);
+        gridContainer.add(kotak20);
 
+        kotak21.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         kotak21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kotak21.setText("0");
         kotak21.setOpaque(true);
-        jPanel4.add(kotak21);
+        gridContainer.add(kotak21);
 
+        kotak22.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         kotak22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kotak22.setText("0");
         kotak22.setOpaque(true);
-        jPanel4.add(kotak22);
+        gridContainer.add(kotak22);
 
+        kotak23.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         kotak23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kotak23.setText("0");
         kotak23.setOpaque(true);
-        jPanel4.add(kotak23);
+        gridContainer.add(kotak23);
 
+        kotak30.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         kotak30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kotak30.setText("0");
         kotak30.setOpaque(true);
-        jPanel4.add(kotak30);
+        gridContainer.add(kotak30);
 
+        kotak31.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         kotak31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kotak31.setText("0");
         kotak31.setOpaque(true);
-        jPanel4.add(kotak31);
+        gridContainer.add(kotak31);
 
+        kotak32.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         kotak32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kotak32.setText("0");
         kotak32.setOpaque(true);
-        jPanel4.add(kotak32);
+        gridContainer.add(kotak32);
 
+        kotak33.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         kotak33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kotak33.setText("0");
         kotak33.setOpaque(true);
-        jPanel4.add(kotak33);
+        gridContainer.add(kotak33);
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 420, 290));
+        getContentPane().add(gridContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 500, 370));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -303,12 +320,12 @@ public class inGame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel gameTitle;
+    private javax.swing.JPanel gridContainer;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel kotak00;
     private javax.swing.JLabel kotak01;
     private javax.swing.JLabel kotak02;
