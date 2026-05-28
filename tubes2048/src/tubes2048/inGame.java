@@ -289,9 +289,8 @@ public class inGame extends javax.swing.JFrame {
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         if (gameBoard.isGameOver()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Game Over! Skor: " + gameBoard.getScore());
             int result = JOptionPane.showConfirmDialog(this, 
-                "Game Over! Skor: " + gameBoard.getScore() + "Start a new Game?", 
+                "Game Over! Score: " + gameBoard.getScore() + ". Start a new Game?", 
                 "Confirmation", 
                 JOptionPane.OK_CANCEL_OPTION);
 
