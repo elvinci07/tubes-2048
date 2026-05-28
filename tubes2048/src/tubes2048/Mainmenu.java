@@ -10,6 +10,13 @@ public class Mainmenu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
     }
+    
+    public Mainmenu(String namaSebelumnya) {
+        initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
+        txtNama.setText(namaSebelumnya); // Langsung isi textfield dengan nama sebelumnya
+    }
 
     
     @SuppressWarnings("unchecked")
@@ -32,7 +39,6 @@ public class Mainmenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1000, 800));
         setMinimumSize(new java.awt.Dimension(1000, 800));
-        setPreferredSize(new java.awt.Dimension(1000, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -45,6 +51,7 @@ public class Mainmenu extends javax.swing.JFrame {
 
         btnHistory.setFont(new java.awt.Font("SimSun-ExtB", 1, 18)); // NOI18N
         btnHistory.setText("History");
+        btnHistory.addActionListener(this::btnHistoryActionPerformed);
         jPanel1.add(btnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 450, 110, 40));
 
         btnExit.setFont(new java.awt.Font("SimSun-ExtB", 1, 18)); // NOI18N
@@ -76,21 +83,29 @@ public class Mainmenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayActionPerformed
-        String usn = txtNama.getText();
-        
-        setName(usn);
-        inGame ingame = new inGame();
+        String usn = txtNama.getText().trim();
+    
+        if (usn.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Nama pemain tidak boleh kosong!");
+            return; // 'return' akan menghentikan kode di bawahnya agar tidak dieksekusi
+        }
+
+        Player pemainAktif = new Player(usn);
+        inGame ingame = new inGame(pemainAktif); 
         this.dispose();
-        ingame.show();
+        ingame.setVisible(true);
     }//GEN-LAST:event_btnPlayActionPerformed
 
-    public String getName(String usn) {
-        return usn;
-    }
     
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoryActionPerformed
+        History menuHistory = new History();
+        this.dispose();
+        menuHistory.setVisible(true);
+    }//GEN-LAST:event_btnHistoryActionPerformed
 
     /**
      * @param args the command line arguments

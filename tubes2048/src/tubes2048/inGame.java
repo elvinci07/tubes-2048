@@ -9,12 +9,11 @@ public class inGame extends javax.swing.JFrame {
 
     private GameBoard gameBoard;
     private javax.swing.JLabel[][] guiBoard;
-    private String playerName = getName();
+    private Player currentPlayer;
 
-    /**
-     * Creates new form inGame
-     */
-    public inGame() {
+
+    public inGame(Player playerMasuk) {
+        this.currentPlayer = playerMasuk;
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
@@ -27,6 +26,10 @@ public class inGame extends javax.swing.JFrame {
             {kotak30, kotak31, kotak32, kotak33}
         };
         
+        GameData dataTersimpan = DataManager.loadData();
+        lblBestScore.setText(String.valueOf(dataTersimpan.getBestScore()));
+        
+        System.out.println("Game dimulai! Player: " + currentPlayer.getName());
         updateGUI();
     }
     
@@ -65,19 +68,6 @@ public class inGame extends javax.swing.JFrame {
         lblScore.setText(String.valueOf(gameBoard.getScore()));
     }
 
-    // Method penentu warna
-    private java.awt.Color getWarnaKotak(int value) {
-        return switch (value) {
-            case 2 -> new java.awt.Color(238, 228, 218);
-            case 4 -> new java.awt.Color(237, 224, 200);
-            case 8 -> new java.awt.Color(242, 177, 121);
-            case 16 -> new java.awt.Color(245, 149, 99);
-            case 32 -> new java.awt.Color(246, 124, 95);
-            case 64 -> new java.awt.Color(246, 94, 59);
-            case 128 -> new java.awt.Color(237, 207, 114);
-            default -> new java.awt.Color(237, 194, 46);
-        };
-    }
 
 
     @SuppressWarnings("unchecked")
@@ -301,33 +291,38 @@ public class inGame extends javax.swing.JFrame {
     }//GEN-LAST:event_formKeyPressed
 
     private void btnNewGame1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewGame1ActionPerformed
-        int result = JOptionPane.showConfirmDialog(null, 
+        int result = JOptionPane.showConfirmDialog(this, 
             "Do you want to proceed? Your last score will be stored in History.", 
             "Confirmation", 
             JOptionPane.OK_CANCEL_OPTION);
 
         if (result == JOptionPane.OK_OPTION) {
-            int lastScore = gameBoard.getScore();
-            String lastName = playerName;
-//            Mainmenu mainmenu = new Mainmenu();
-//            this.dispose();
-//            mainmenu.show();
-        this.requestFocusInWindow(); // Kembalikan fokus ke keyboard
+            int skorAkhir = gameBoard.getScore();
+            
+            // Simpan ke JSON!
+            DataManager.saveScore(currentPlayer.getName(), skorAkhir);
+            
+            inGame sesiBaru = new inGame(this.currentPlayer);
+            this.dispose(); 
+            sesiBaru.setVisible(true); 
         }
     }//GEN-LAST:event_btnNewGame1ActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        int result = JOptionPane.showConfirmDialog(null, 
+        int result = JOptionPane.showConfirmDialog(this, 
             "Do you want to proceed? Your last score will be stored in History.", 
             "Confirmation", 
             JOptionPane.OK_CANCEL_OPTION);
 
         if (result == JOptionPane.OK_OPTION) {
-            int lastScore = gameBoard.getScore();
-            Mainmenu mainmenu = new Mainmenu();
+            int skorAkhir = gameBoard.getScore();
+            
+            // Simpan ke JSON!
+            DataManager.saveScore(currentPlayer.getName(), skorAkhir);
+            
+            Mainmenu mainmenu = new Mainmenu(currentPlayer.getName());
             this.dispose();
-            mainmenu.show();
-        this.requestFocusInWindow(); // Kembalikan fokus ke keyboard
+            mainmenu.setVisible(true);
         }
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -335,17 +330,7 @@ public class inGame extends javax.swing.JFrame {
     
 
     public static void main(String args[]) {
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        java.awt.EventQueue.invokeLater(() -> new inGame().setVisible(true));
+       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
