@@ -12,7 +12,10 @@ public class GameData {
         this.history = new ArrayList<>();
     }
 
-    public int getBestScore() { return bestScore; }
+    
+    public int getBestScore() { 
+        return bestScore; 
+    }
     public void setBestScore(int bestScore) { this.bestScore = bestScore; }
     
     public List<ScoreEntry> getHistory() { return history; }

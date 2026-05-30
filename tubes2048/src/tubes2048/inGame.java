@@ -9,12 +9,14 @@ public class inGame extends javax.swing.JFrame {
 
     private GameBoard gameBoard;
     private javax.swing.JLabel[][] guiBoard;
-    private Player currentPlayer;
+    private Player pemainAktif;
+    private GameData dataTersimpan;
 
 
-    public inGame(Player playerMasuk) {
-        this.currentPlayer = playerMasuk;
+    public inGame(Player pemain, GameData data) { 
         initComponents();
+        this.pemainAktif = pemain;
+        this.dataTersimpan = data;
         setLocationRelativeTo(null);
         setResizable(false);
         
@@ -26,11 +28,10 @@ public class inGame extends javax.swing.JFrame {
             {kotak30, kotak31, kotak32, kotak33}
         };
         
-        GameData dataTersimpan = DataManager.loadData();
-        lblBestScore.setText(String.valueOf(dataTersimpan.getBestScore()));
-        
-        System.out.println("Game dimulai! Player: " + currentPlayer.getName());
+        lblBestScore.setText(String.valueOf(this.dataTersimpan.getBestScore()));        
+        System.out.println("Game dimulai! Player: " + pemainAktif.getName());
         updateGUI();
+        this.requestFocusInWindow();
     }
     
     private void updateGUI() {
@@ -104,7 +105,6 @@ public class inGame extends javax.swing.JFrame {
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/tubes2048/resources/2048_logo.svg.png")).getImage());
         setMaximumSize(new java.awt.Dimension(1000, 732));
         setMinimumSize(new java.awt.Dimension(1000, 732));
-        setPreferredSize(new java.awt.Dimension(1000, 732));
         setResizable(false);
         setSize(new java.awt.Dimension(1000, 732));
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -298,9 +298,9 @@ public class inGame extends javax.swing.JFrame {
                 int skorAkhir = gameBoard.getScore();
 
                 // Simpan ke JSON!
-                DataManager.saveScore(currentPlayer.getName(), skorAkhir);
-
-                inGame sesiBaru = new inGame(this.currentPlayer);
+                DataManager.saveScore(this.dataTersimpan, pemainAktif.getName(), skorAkhir);
+                inGame sesiBaru = new inGame(this.pemainAktif, this.dataTersimpan);
+                
                 this.dispose(); 
                 sesiBaru.setVisible(true); 
             }
@@ -345,9 +345,9 @@ public class inGame extends javax.swing.JFrame {
             int skorAkhir = gameBoard.getScore();
             
             // Simpan ke JSON!
-            DataManager.saveScore(currentPlayer.getName(), skorAkhir);
+            DataManager.saveScore(this.dataTersimpan, pemainAktif.getName(), skorAkhir);            
+            inGame sesiBaru = new inGame(this.pemainAktif, this.dataTersimpan);
             
-            inGame sesiBaru = new inGame(this.currentPlayer);
             this.dispose(); 
             sesiBaru.setVisible(true); 
         }
@@ -363,9 +363,8 @@ public class inGame extends javax.swing.JFrame {
             int skorAkhir = gameBoard.getScore();
             
             // Simpan ke JSON!
-            DataManager.saveScore(currentPlayer.getName(), skorAkhir);
-            
-            Mainmenu mainmenu = new Mainmenu(currentPlayer.getName());
+            DataManager.saveScore(this.dataTersimpan, pemainAktif.getName(), skorAkhir);
+            Mainmenu mainmenu = new Mainmenu(pemainAktif.getName(), this.dataTersimpan);
             this.dispose();
             mainmenu.setVisible(true);
         }

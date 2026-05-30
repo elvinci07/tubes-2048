@@ -3,20 +3,25 @@ package tubes2048;
 public class Mainmenu extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Mainmenu.class.getName());
+    private GameData dataTersimpan = new GameData();
 
-    public Mainmenu() {
+    // 1. Constructor untuk menerima operan balik dari History (hanya bawa data)
+    public Mainmenu(GameData data) {
         initComponents();
         pack();
         setLocationRelativeTo(null);
         setResizable(false);
+        this.dataTersimpan = data; // Tangkap datanya kembali!
     }
-    
-    public Mainmenu(String namaSebelumnya) {
+
+    // 2. Constructor untuk menerima operan balik dari inGame (bawa nama & data)
+    public Mainmenu(String namaSebelumnya, GameData data) {
         initComponents();
         pack();
         setLocationRelativeTo(null);
         setResizable(false);
-        txtNama.setText(namaSebelumnya);
+        txtNama.setText(namaSebelumnya); // Isi ulang kolom nama
+        this.dataTersimpan = data; // Tangkap datanya kembali!
     }
 
     
@@ -131,14 +136,18 @@ public class Mainmenu extends javax.swing.JFrame {
 
     private void btnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayActionPerformed
         String usn = txtNama.getText().trim();
-    
+
         if (usn.isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this, "Nama pemain tidak boleh kosong!");
-            return; // 'return' akan menghentikan kode di bawahnya agar tidak dieksekusi
+            return; 
         }
 
+        if (this.dataTersimpan == null) {
+            this.dataTersimpan = new GameData();
+        }
         Player pemainAktif = new Player(usn);
-        inGame ingame = new inGame(pemainAktif); 
+
+        inGame ingame = new inGame(pemainAktif, dataTersimpan); 
         this.dispose();
         ingame.setVisible(true);
     }//GEN-LAST:event_btnPlayActionPerformed
@@ -149,7 +158,10 @@ public class Mainmenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoryActionPerformed
-        History menuHistory = new History();
+        if (this.dataTersimpan == null) {
+            this.dataTersimpan = new GameData();
+        }
+        History menuHistory = new History(dataTersimpan);
         this.dispose();
         menuHistory.setVisible(true);
     }//GEN-LAST:event_btnHistoryActionPerformed
@@ -200,7 +212,16 @@ public class Mainmenu extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Mainmenu().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> {
+            // 1. Load data dari JSON sekali saja saat game pertama kali dibuka
+            GameData dataAwal = DataManager.loadData(); 
+
+            if (dataAwal == null) {
+                dataAwal = new GameData();
+            }
+
+            new Mainmenu(dataAwal).setVisible(true);
+        });
     }
     
     

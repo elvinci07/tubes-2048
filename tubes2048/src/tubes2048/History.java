@@ -5,26 +5,24 @@ public class History extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(History.class.getName());
 
-    public History() {
-        initComponents(); // Ini biarin aja
-        setLocationRelativeTo(null); // Biar di tengah
-        
-        // 1. PANGGIL FUNGSI BACA JSON DI SINI!
+    private GameData dataTersimpan;
+
+    public History(GameData data) { 
+        initComponents();
+        setLocationRelativeTo(null);
+        this.dataTersimpan = data; // Tangkap datanya!
+
+        // Baru aman manggil fungsi untuk nampilin riwayat
         tampilkanDataHistory(); 
     }
 
     private void tampilkanDataHistory() {
-        GameData data = DataManager.loadData();
-
-        // Ambil "model" dari tabel yang barusan kamu buat (misal namanya jTable1)
+        if (this.dataTersimpan == null) {
+            return; 
+        }
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-
-        // Bersihkan isi tabel barangkali ada data bawaan dari NetBeans
         model.setRowCount(0); 
-
-        // Masukkan data dari JSON baris demi baris
-        for (ScoreEntry entry : data.getHistory()) {
-            // Tambahkan satu baris baru berisi Nama dan Skor
+        for (ScoreEntry entry : this.dataTersimpan.getHistory()) {
             model.addRow(new Object[]{ entry.getName(), entry.getScore() });
         }
     }
@@ -123,7 +121,8 @@ public class History extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        Mainmenu mainmenu = new Mainmenu();
+        // Tambahkan this.dataTersimpan biar datanya nggak putus!
+        Mainmenu mainmenu = new Mainmenu(this.dataTersimpan); 
         this.dispose();
         mainmenu.setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
@@ -156,7 +155,7 @@ public class History extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new History().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new History(new GameData()).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

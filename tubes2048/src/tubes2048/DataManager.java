@@ -30,22 +30,16 @@ public class DataManager {
     }
 
     // Method untuk menyimpan skor baru ke file JSON
-    public static void saveScore(String playerName, int score) {
-        GameData data = loadData(); // Ambil data yang lama dulu
-        
-        // Cek apakah skor ini lebih tinggi dari bestScore yang pernah ada
+    public static void saveScore(GameData data, String playerName, int score) {
         if (score > data.getBestScore()) {
             data.setBestScore(score);
         }
-        
-        // Tambahkan sesi main ini ke daftar history
         data.getHistory().add(new ScoreEntry(playerName, score));
         
-        // Tulis ulang file JSON-nya dengan data terbaru
         try (Writer writer = new FileWriter(FILE_PATH)) {
             gson.toJson(data, writer);
         } catch (Exception e) {
-            System.err.println("Gagal menyimpan ke file JSON: " + e.getMessage());
+            System.err.println("Gagal menyimpan JSON: " + e.getMessage());
         }
     }
 }
