@@ -45,7 +45,7 @@ public class inGame extends javax.swing.JFrame {
                 guiBoard[i][j].setText(""); // Hapus teks lama
 
                 try {
-                    java.net.URL imgURL = getClass().getResource("/tubes2048/resources/" + nilai + ".png");
+                    java.net.URL imgURL = getClass().getResource("/resources/" + nilai + ".png");
 
                     if (imgURL != null) {
                         guiBoard[i][j].setIcon(new javax.swing.ImageIcon(imgURL));
@@ -102,7 +102,7 @@ public class inGame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("2048 - Slide, Merge, and Win!");
         setBackground(new java.awt.Color(255, 204, 204));
-        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/tubes2048/resources/2048_logo.svg.png")).getImage());
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/resources/2048_logo.svg.png")).getImage());
         setMaximumSize(new java.awt.Dimension(1000, 732));
         setMinimumSize(new java.awt.Dimension(1000, 732));
         setResizable(false);
@@ -242,7 +242,7 @@ public class inGame extends javax.swing.JFrame {
 
         getContentPane().add(gridContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 430, 430));
 
-        bgBoard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tubes2048/resources/board.png"))); // NOI18N
+        bgBoard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/board.png"))); // NOI18N
         getContentPane().add(bgBoard, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 450, 450));
 
         jPanel4.setBackground(new java.awt.Color(250, 248, 239));
