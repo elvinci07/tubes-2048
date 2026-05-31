@@ -31,11 +31,11 @@ public class Mainmenu extends javax.swing.JFrame {
 
         jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        subTitle = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
         btnPlay = new javax.swing.JButton();
         btnHistory = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
-        subTitle = new javax.swing.JLabel();
         txtNama = new javax.swing.JTextField();
         lblName = new javax.swing.JLabel();
 
@@ -44,9 +44,9 @@ public class Mainmenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("2048 - Slide, Merge, and Win!");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/resources/2048_logo.svg.png")).getImage());
-        setMaximumSize(new java.awt.Dimension(800, 600));
-        setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setMaximumSize(new java.awt.Dimension(800, 640));
+        setMinimumSize(new java.awt.Dimension(800, 640));
+        setPreferredSize(new java.awt.Dimension(800, 640));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -57,12 +57,17 @@ public class Mainmenu extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblTitle.setFont(new java.awt.Font("Stencil", 1, 100)); // NOI18N
+        subTitle.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
+        subTitle.setForeground(new java.awt.Color(143, 122, 102));
+        subTitle.setText("Slide, Merge, and Win!");
+        jPanel1.add(subTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, -1, -1));
+
+        lblTitle.setFont(new java.awt.Font("Stencil", 1, 110)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(75, 53, 31));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("2048");
         lblTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 370, 120));
+        jPanel1.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 370, 140));
 
         btnPlay.setBackground(new java.awt.Color(249, 246, 242));
         btnPlay.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
@@ -78,7 +83,7 @@ public class Mainmenu extends javax.swing.JFrame {
             }
         });
         btnPlay.addActionListener(this::btnPlayActionPerformed);
-        jPanel1.add(btnPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, 160, 40));
+        jPanel1.add(btnPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, 190, 55));
 
         btnHistory.setBackground(new java.awt.Color(249, 246, 242));
         btnHistory.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
@@ -94,7 +99,7 @@ public class Mainmenu extends javax.swing.JFrame {
             }
         });
         btnHistory.addActionListener(this::btnHistoryActionPerformed);
-        jPanel1.add(btnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 400, 160, 40));
+        jPanel1.add(btnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 420, 190, 55));
 
         btnExit.setBackground(new java.awt.Color(249, 246, 242));
         btnExit.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
@@ -110,25 +115,20 @@ public class Mainmenu extends javax.swing.JFrame {
             }
         });
         btnExit.addActionListener(this::btnExitActionPerformed);
-        jPanel1.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 470, 160, 40));
-
-        subTitle.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        subTitle.setForeground(new java.awt.Color(143, 122, 102));
-        subTitle.setText("Slide, Merge, and Win!");
-        jPanel1.add(subTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, -1));
+        jPanel1.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 490, 190, 55));
 
         txtNama.setBackground(new java.awt.Color(249, 246, 242));
         txtNama.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         txtNama.setForeground(new java.awt.Color(92, 65, 40));
         txtNama.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtNama.addActionListener(this::txtNamaActionPerformed);
-        jPanel1.add(txtNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 340, 40));
+        jPanel1.add(txtNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 340, 50));
 
         lblName.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
         lblName.setForeground(new java.awt.Color(118, 95, 75));
         lblName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblName.setText("Nama Pemain");
-        jPanel1.add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 220, 160, -1));
+        jPanel1.add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 230, 160, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 730));
 

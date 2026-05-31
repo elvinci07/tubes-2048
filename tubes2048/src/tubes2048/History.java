@@ -43,6 +43,9 @@ public class History extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("2048 - Slide, Merge, and Win!");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/resources/2048_logo.svg.png")).getImage());
+        setMaximumSize(new java.awt.Dimension(550, 640));
+        setMinimumSize(new java.awt.Dimension(550, 640));
+        setPreferredSize(new java.awt.Dimension(550, 640));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -78,7 +81,7 @@ public class History extends javax.swing.JFrame {
         lblTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, -20, 370, 120));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 560, 90));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 560, 80));
 
         jPanel1.setBackground(new java.awt.Color(250, 248, 239));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -111,7 +114,7 @@ public class History extends javax.swing.JFrame {
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, 560));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, 480));
 
         jScrollPane1.setViewportView(jPanel1);
 
