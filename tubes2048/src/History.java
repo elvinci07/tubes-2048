@@ -42,7 +42,7 @@ public class History extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("2048 - Slide, Merge, and Win!");
-        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/tubes2048/resources/2048_logo.svg.png")).getImage());
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/resources/2048_logo.svg.png")).getImage());
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

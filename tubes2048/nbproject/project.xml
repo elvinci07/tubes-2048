@@ -5,7 +5,7 @@
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
             <name>tubes2048</name>
             <source-roots>
-                <root id="src.tubes2048.dir"/>
+                <root id="src.src.dir" name="tubes-2048"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir"/>
