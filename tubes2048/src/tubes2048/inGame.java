@@ -103,7 +103,6 @@ public class inGame extends javax.swing.JFrame {
         setTitle("2048 - Slide, Merge, and Win!");
         setBackground(new java.awt.Color(255, 204, 204));
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/resources/2048_logo.svg.png")).getImage());
-        setMaximumSize(new java.awt.Dimension(1000, 732));
         setMinimumSize(new java.awt.Dimension(1000, 732));
         setResizable(false);
         setSize(new java.awt.Dimension(1000, 732));

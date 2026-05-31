@@ -44,9 +44,7 @@ public class Mainmenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("2048 - Slide, Merge, and Win!");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/resources/2048_logo.svg.png")).getImage());
-        setMaximumSize(new java.awt.Dimension(1000, 732));
         setMinimumSize(new java.awt.Dimension(1000, 732));
-        setPreferredSize(new java.awt.Dimension(1000, 732));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
