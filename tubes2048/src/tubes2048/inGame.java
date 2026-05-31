@@ -73,6 +73,13 @@ public class inGame extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         btnNewGame1 = new javax.swing.JButton();
         gameTitle = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        lblBestScore = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        lblScore = new javax.swing.JLabel();
         gridContainer = new javax.swing.JPanel();
         kotak00 = new javax.swing.JLabel();
         kotak01 = new javax.swing.JLabel();
@@ -91,21 +98,16 @@ public class inGame extends javax.swing.JFrame {
         kotak32 = new javax.swing.JLabel();
         kotak33 = new javax.swing.JLabel();
         bgBoard = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        lblBestScore = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        lblScore = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("2048 - Slide, Merge, and Win!");
         setBackground(new java.awt.Color(255, 204, 204));
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/resources/2048_logo.svg.png")).getImage());
-        setMinimumSize(new java.awt.Dimension(1000, 732));
+        setMaximumSize(new java.awt.Dimension(800, 640));
+        setMinimumSize(new java.awt.Dimension(800, 640));
+        setPreferredSize(new java.awt.Dimension(800, 640));
         setResizable(false);
-        setSize(new java.awt.Dimension(1000, 732));
+        setSize(new java.awt.Dimension(800, 640));
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -114,11 +116,13 @@ public class inGame extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(244, 239, 220));
-        jPanel1.setPreferredSize(new java.awt.Dimension(720, 50));
+        jPanel1.setMaximumSize(new java.awt.Dimension(800, 50));
+        jPanel1.setMinimumSize(new java.awt.Dimension(800, 50));
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 50));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnBack.setBackground(new java.awt.Color(249, 246, 242));
-        btnBack.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
+        btnBack.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
         btnBack.setForeground(new java.awt.Color(143, 122, 102));
         btnBack.setText("<html>Back</html>");
         btnBack.setActionCommand("<html> New<br>\nGame</html>");
@@ -138,10 +142,10 @@ public class inGame extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 170, 50));
+        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 140, 50));
 
         btnNewGame1.setBackground(new java.awt.Color(249, 246, 242));
-        btnNewGame1.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
+        btnNewGame1.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
         btnNewGame1.setForeground(new java.awt.Color(143, 122, 102));
         btnNewGame1.setText("<html>New Game</html>");
         btnNewGame1.setActionCommand("<html> New<br>\nGame</html>");
@@ -161,16 +165,56 @@ public class inGame extends javax.swing.JFrame {
                 btnNewGame1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNewGame1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 60, 180, 50));
+        jPanel1.add(btnNewGame1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, 140, 50));
 
-        gameTitle.setFont(new java.awt.Font("Stencil", 1, 148)); // NOI18N
+        gameTitle.setFont(new java.awt.Font("Stencil", 1, 90)); // NOI18N
         gameTitle.setForeground(new java.awt.Color(75, 53, 31));
         gameTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gameTitle.setText("2048");
         gameTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(gameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 370, 120));
+        jPanel1.add(gameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 370, 100));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 170));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 100));
+
+        jPanel4.setBackground(new java.awt.Color(250, 248, 239));
+        jPanel4.setMaximumSize(new java.awt.Dimension(800, 600));
+        jPanel4.setMinimumSize(new java.awt.Dimension(800, 600));
+        jPanel4.setPreferredSize(new java.awt.Dimension(800, 600));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel3.setBackground(new java.awt.Color(143, 122, 102));
+        jPanel3.setForeground(new java.awt.Color(249, 246, 242));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setFont(new java.awt.Font("Constantia", 1, 30)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(251, 239, 227));
+        jLabel4.setText("BEST");
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        lblBestScore.setFont(new java.awt.Font("Consolas", 1, 30)); // NOI18N
+        lblBestScore.setForeground(new java.awt.Color(253, 252, 251));
+        lblBestScore.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblBestScore.setText("0");
+        jPanel3.add(lblBestScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 45, 130, -1));
+
+        jPanel4.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 350, 150, 85));
+
+        jPanel2.setBackground(new java.awt.Color(143, 122, 102));
+        jPanel2.setForeground(new java.awt.Color(249, 246, 242));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Constantia", 1, 30)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(251, 239, 227));
+        jLabel2.setText("SCORE");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        lblScore.setFont(new java.awt.Font("Consolas", 1, 30)); // NOI18N
+        lblScore.setForeground(new java.awt.Color(253, 252, 251));
+        lblScore.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblScore.setText("0");
+        jPanel2.add(lblScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 45, 130, -1));
+
+        jPanel4.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 220, 150, 85));
 
         gridContainer.setOpaque(false);
         gridContainer.setLayout(new java.awt.GridLayout(4, 4, 1, 1));
@@ -239,51 +283,15 @@ public class inGame extends javax.swing.JFrame {
         kotak33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gridContainer.add(kotak33);
 
-        getContentPane().add(gridContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 430, 430));
+        jPanel4.add(gridContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 430, 430));
 
         bgBoard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/board.png"))); // NOI18N
-        getContentPane().add(bgBoard, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 450, 450));
+        jPanel4.add(bgBoard, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 450, 450));
 
-        jPanel4.setBackground(new java.awt.Color(250, 248, 239));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel3.setBackground(new java.awt.Color(143, 122, 102));
-        jPanel3.setForeground(new java.awt.Color(249, 246, 242));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel4.setFont(new java.awt.Font("Constantia", 1, 30)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(251, 239, 227));
-        jLabel4.setText("BEST");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        lblBestScore.setFont(new java.awt.Font("Consolas", 1, 30)); // NOI18N
-        lblBestScore.setForeground(new java.awt.Color(253, 252, 251));
-        lblBestScore.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        lblBestScore.setText("0");
-        jPanel3.add(lblBestScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 45, 130, -1));
-
-        jPanel4.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 410, 150, 85));
-
-        jPanel2.setBackground(new java.awt.Color(143, 122, 102));
-        jPanel2.setForeground(new java.awt.Color(249, 246, 242));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setFont(new java.awt.Font("Constantia", 1, 30)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(251, 239, 227));
-        jLabel2.setText("SCORE");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        lblScore.setFont(new java.awt.Font("Consolas", 1, 30)); // NOI18N
-        lblScore.setForeground(new java.awt.Color(253, 252, 251));
-        lblScore.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        lblScore.setText("0");
-        jPanel2.add(lblScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 45, 130, -1));
-
-        jPanel4.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 280, 150, 85));
-
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 732));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
