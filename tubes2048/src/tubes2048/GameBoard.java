@@ -21,12 +21,12 @@ public class GameBoard {
             }
         }
         // Munculkan 2 angka di awal
-//        spawnTile();
-//        spawnTile();
+        spawnTile();
+        spawnTile();
         
-        // CHEAT MODE ON: Langsung kasih dua 1024 di pojok kiri atas!
-        board[0][0].setValue(4096);
-        board[0][1].setValue(4096);
+//        // CHEAT MODE ON
+//        board[0][0].setValue(4096);
+//        board[0][1].setValue(4096);
     }
 
     // 2. Memunculkan angka 2 atau 4 di posisi acak yang kosong

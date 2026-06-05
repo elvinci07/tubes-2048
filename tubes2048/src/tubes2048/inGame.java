@@ -347,6 +347,7 @@ public class inGame extends javax.swing.JFrame {
         if (gameBoard.isWin8192() && !win8192Triggered) {
             javax.swing.JOptionPane.showMessageDialog(this, "At this rate just play alone bro");
             gameTitle.setText("XÆA-12#!@$%^&*()_+{}|:<>?=-[]\\\\;',./0123456789");
+            gameTitle.setFont(new java.awt.Font("Stencil", 1, 25));
             win8192Triggered = true;
         }
     }//GEN-LAST:event_formKeyPressed
