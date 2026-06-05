@@ -11,6 +11,9 @@ public class inGame extends javax.swing.JFrame {
     private javax.swing.JLabel[][] guiBoard;
     private Player pemainAktif;
     private GameData dataTersimpan;
+    private boolean win2048Triggered = false;
+    private boolean win4096Triggered = false;
+    private boolean win8192Triggered = false;
 
 
     public inGame(Player pemain, GameData data) { 
@@ -326,19 +329,25 @@ public class inGame extends javax.swing.JFrame {
 
         updateGUI(); // Panggil ini biar layarnya ke-update setiap kamu pencet arah
 
-        if (gameBoard.isWin()) {
+        // Kunci 1: Tembus 2048
+        if (gameBoard.isWin() && !win2048Triggered) {
             javax.swing.JOptionPane.showMessageDialog(this, "You Win!");
             gameTitle.setText("4096");
+            win2048Triggered = true; // Gembok ditutup biar ga spam
         }
         
-        if (gameBoard.isWinWin()) {
+        // Kunci 2: Tembus 4096
+        if (gameBoard.isWin4096() && !win4096Triggered) {
             javax.swing.JOptionPane.showMessageDialog(this, "You win again!");
             gameTitle.setText("8192");
+            win4096Triggered = true;
         }
         
-        if (gameBoard.isWinWin()) {
+        // Kunci 3: Tembus 8192
+        if (gameBoard.isWin8192() && !win8192Triggered) {
             javax.swing.JOptionPane.showMessageDialog(this, "At this rate just play alone bro");
             gameTitle.setText("XÆA-12#!@$%^&*()_+{}|:<>?=-[]\\\\;',./0123456789");
+            win8192Triggered = true;
         }
     }//GEN-LAST:event_formKeyPressed
 

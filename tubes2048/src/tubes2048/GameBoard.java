@@ -21,8 +21,12 @@ public class GameBoard {
             }
         }
         // Munculkan 2 angka di awal
-        spawnTile();
-        spawnTile();
+//        spawnTile();
+//        spawnTile();
+        
+        // CHEAT MODE ON: Langsung kasih dua 1024 di pojok kiri atas!
+        board[0][0].setValue(4096);
+        board[0][1].setValue(4096);
     }
 
     // 2. Memunculkan angka 2 atau 4 di posisi acak yang kosong
@@ -156,20 +160,25 @@ public class GameBoard {
     public boolean isWin() {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                if (board[i][j].getValue() == 2048) {
-                    return true;
-                }
+                if (board[i][j].getValue() == 2048) return true;
             }
         }
         return false;
     }
     
-    public boolean isWinWin() {
+    public boolean isWin4096() {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                if (board[i][j].getValue() == 2048) {
-                    return true;
-                }
+                if (board[i][j].getValue() == 4096) return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isWin8192() {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (board[i][j].getValue() == 8192) return true;
             }
         }
         return false;
